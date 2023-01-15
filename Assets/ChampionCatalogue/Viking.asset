@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Viking
   m_EditorClassIdentifier: 
   championIcon: {fileID: 21300000, guid: 7cc6f84ea76dec3438c178fa75f54280, type: 3}
+  championName: Viking
   attack: 7.4
   defense: 5.2
   CC: 3
@@ -24,3 +25,6 @@ MonoBehaviour:
   sustain: 2
   teamHealing: 0
   scaling: 0.7
+  turretPush: 6
+  poke: 4
+  stats: []

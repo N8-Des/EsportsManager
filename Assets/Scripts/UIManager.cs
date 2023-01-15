@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +8,10 @@ public class UIManager : MonoBehaviour
     public Transform playerDisplayLocation;
     public GameObject playerDisplayDefault;
     public GameObject playerDisplayClick;
+    public GameObject championPanel;
+    public GameObject championPicker;
+    public ChampionStatDisplay championStatDisplay;
+    public GameObject championDisplay;
     public List<StatSlider> sliders;
     public PlayerStats selectedPlayer;
     public TextMeshProUGUI playerName;
@@ -26,6 +28,17 @@ public class UIManager : MonoBehaviour
         }
         playerName.text = player.name;
         playerScore.text = player.getScore().ToString();
+    }
+    public void StopDisplayingChamps(int champIndex)
+    {
+        selectedPlayer.championSelected = champIndex;
+        championPanel.SetActive(false);
+    }
+    public void DisplayChampions()
+    {
+        championPanel.SetActive(true);
+        championStatDisplay.gameObject.SetActive(true);
+        championStatDisplay.DisplayStats(selectedPlayer.championSelected);
     }
     public void PressRed()
     {

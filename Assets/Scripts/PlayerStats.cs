@@ -31,7 +31,7 @@ public class PlayerStats
     public int decisionMaking; // 1.75
     public int determination; // 1
     public int consistency; // 1.1
-
+    public int championSelected;
     public float weightSums = 20.05f;
 
     public int getScore()

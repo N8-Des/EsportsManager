@@ -7,7 +7,8 @@ public class PlayerAI : MonoBehaviour
 {
     public PlayerStats myStats;
     public State currentState;
-    public int totalGold;
+    public float totalGoldModifier = 1;
+    public int currentGold;
     public bool blueTeam;
     public ChampionStats championStats;
     public int currentHealth;
@@ -59,7 +60,7 @@ public class PlayerAI : MonoBehaviour
 
     public void Update()
     {
-        currentState.stateTick(this);
+        currentState = currentState.stateTick(this);
     }
     public void TakeDamage(int damage)
     {
@@ -120,6 +121,16 @@ public class PlayerAI : MonoBehaviour
         myStats.vision = (int)(myStats.vision * consistencyMultipler);
         myStats.warding = (int)(myStats.warding * consistencyMultipler);
     }
+
+    public void SetChampion()
+    {
+        characterIcon.sprite = championStats.championIcon;
+    }
+    public void SpendGold()
+    {
+        totalGoldModifier += currentGold * 0.00005f;
+        currentGold = 0;
+    }
     public float DistanceToTurret()
     {
         float distance = Mathf.Infinity;
@@ -133,26 +144,43 @@ public class PlayerAI : MonoBehaviour
         }
         return distance;
     }
+    public Turret GetClosestTurret()
+    {
+        float distance = Mathf.Infinity;
+        Turret turret = friendlyTurrets[1];
+        foreach (Turret t in friendlyTurrets)
+        {
+            float currDistance = Vector3.Distance(transform.position, t.transform.position);
+            if (currDistance < distance)
+            {
+                distance = currDistance;
+                turret = t;
+            }
+        }
+        return turret;
+    }
 
     public void Die()
     {
         transform.position = mySpawn;
         currentHealth = maxHealth;
         Debug.Log("I died LOL");
+        SpendGold();
     }
 
     public void Back()
     {
         transform.position = mySpawn;
         currentHealth = maxHealth;
+        SpendGold();
     }
 
-    public int GuessCombatPower(List<PlayerAI> team)
+    public float GuessCombatPower(List<PlayerAI> team)
     {
-        int combatPower = 0;
+        float combatPower = 0;
         foreach (PlayerAI player in team)
         {
-            combatPower += (int)((player.championStats.attack + player.championStats.defense + player.championStats.CC) * 1.5f);
+            combatPower += (int)((player.championStats.attack + player.championStats.defense + player.championStats.CC) * 3.5f);
             combatPower += player.currentHealth * 3;
             //add simple counter here to add based on champion mastery
 
@@ -169,9 +197,12 @@ public class PlayerAI : MonoBehaviour
             {
                 randomStatVariance = (int)Random.Range(-variance, variance);
                 playerStatPower += player.myStats.teamwork + randomStatVariance;
+                playerStatPower += player.myStats.communication + randomStatVariance;
             }
             playerStatPower = (int)(playerStatPower * 0.05f);
             combatPower += playerStatPower;
+            combatPower *= Mathf.Pow(player.totalGoldModifier, player.championStats.scaling);
+
 
         }
         return combatPower;

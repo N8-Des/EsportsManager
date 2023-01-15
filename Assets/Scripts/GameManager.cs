@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public PlayerStats[] players;
+    public ChampionStats[] champions;
     public UIManager uiManager;
     public GameCanvas gameCanvas;
     public GameObject playerDisplay;
@@ -38,6 +39,12 @@ public class GameManager : MonoBehaviour
         {
             GameObject go = Instantiate(playerDisplay, uiManager.playerDisplayLocation);
             go.GetComponent<PlayerDisplay>().SetPlayer(p, uiManager);
+        }
+        foreach (ChampionStats c in champions)
+        {
+            GameObject go = Instantiate(uiManager.championDisplay, uiManager.championPicker.transform);
+            go.GetComponent<ChampDisplay>().OnCreation(c, uiManager.championStatDisplay);
+           
         }
         //TESTING: REMEMBER TO REMOVE!
         blueTop.myStats = players[0];
@@ -74,6 +81,11 @@ public class GameManager : MonoBehaviour
 
     void ActivatePlayers()
     {
+        for (int i = 0; i < 4; i++)
+        {
+            bluePlayers[i].championStats = champions[bluePlayers[i].myStats.championSelected];
+            redPlayers[i].championStats = champions[redPlayers[i].myStats.championSelected];
+        }
         blueTop.enabled = true;
         blueMid.enabled = true;
         blueBot.enabled = true;
@@ -164,8 +176,9 @@ public class GameManager : MonoBehaviour
             float scoreDiff = initiatorScore - defenderScore;
             if (scoreDiff < 100)
             {
-                float damage = Mathf.Lerp(95, 0, scoreDiff / 100);
-                initiator.TakeDamage((int)damage);
+                float damage = Mathf.Lerp(99, 0, scoreDiff / 100);
+                float damageToTake = (float)initiator.currentHealth * (damage / 100);
+                initiator.TakeDamage((int)damageToTake);
             }
             if (chaseScore >= escapeScore)
             {
@@ -178,7 +191,8 @@ public class GameManager : MonoBehaviour
             else
             {
                 float damage = Mathf.Lerp(99, 0, scoreDiff / 100);
-                otherPlayer.TakeDamage((int)damage);
+                float damageToTake = (float)otherPlayer.currentHealth * (damage / 100);
+                otherPlayer.TakeDamage((int)damageToTake);
                 otherPlayer.Back();
                 gameCanvas.DisplayResult("escape succeeded.");
                 Time.timeScale = 0;
@@ -213,8 +227,9 @@ public class GameManager : MonoBehaviour
             float scoreDiff = defenderScore - initiatorScore;
             if (scoreDiff < 100)
             {
-                float damage = Mathf.Lerp(95, 0, scoreDiff / 100);
-                otherPlayer.TakeDamage((int)damage);
+                float damage = Mathf.Lerp(99, 0, scoreDiff / 100);
+                float damageToTake = (float)otherPlayer.currentHealth * (damage / 100);
+                otherPlayer.TakeDamage((int)damageToTake);
             }
             if (chaseScore >= escapeScore)
             {
@@ -227,7 +242,9 @@ public class GameManager : MonoBehaviour
             else
             {
                 float damage = Mathf.Lerp(99, 0, scoreDiff / 100);
-                initiator.TakeDamage((int)damage);
+                float damageToTake = (float)initiator.currentHealth * (damage / 100);
+
+                initiator.TakeDamage((int)damageToTake);
                 initiator.Back();
                 gameCanvas.DisplayResult("escape succeeded.");
                 Time.timeScale = 0;
@@ -258,6 +275,7 @@ public class GameManager : MonoBehaviour
         combatScore += (player.myStats.playmaking * 0.9f);
         combatScore += player.myStats.allIn * 0.65f;
         combatScore *= player.performanceMultiplier;
+        combatScore *= Mathf.Pow(player.totalGoldModifier, player.championStats.scaling);
         //add some randomness to get some spice!
         float randomSpice = Random.Range(-11.0f, 11.0f);
         combatScore += randomSpice;

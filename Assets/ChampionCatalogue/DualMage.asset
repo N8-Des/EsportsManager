@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: DualMage
   m_EditorClassIdentifier: 
   championIcon: {fileID: 21300000, guid: 55335a72ed5e6404c879c19b8c61ec39, type: 3}
+  championName: Dual Mage
   attack: 8.5
   defense: 4.6
   CC: 8
-  teamfight: 7.5
+  teamfight: 7
   dueling: 5.6
   combatSpeed: 1.3
-  outOfCombatSpeed: 2.3
+  outOfCombatSpeed: 2.25
   mobility: 0
   sustain: 0
   teamHealing: 0
   scaling: 1.3
+  turretPush: 3
+  poke: 8
+  stats: []
