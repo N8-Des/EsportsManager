@@ -10,34 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f193e405481e7f4bb39d656b69d2f2c, type: 3}
-  m_Name: DarkKnight
+  m_Name: Outlaw
   m_EditorClassIdentifier: 
-  championIcon: {fileID: 21300000, guid: 7596766e329a13e4ead022de1d1c5dc6, type: 3}
-  championName: Shadow Knight
-  attack: 5.5
-  defense: 8.1
-  CC: 5
-  teamfight: 4
-  dueling: 8
-  combatSpeed: 1.5
-  outOfCombatSpeed: 2.1
-  mobility: 4
+  championIcon: {fileID: 21300000, guid: b3e38a2ae8720bf4392a68dac39cb133, type: 3}
+  championName: Outlaw
+  archetype: 4
+  attack: 8.7
+  defense: 2.3
+  CC: 0
+  teamfight: 9.6
+  dueling: 4.5
+  combatSpeed: 1.3
+  outOfCombatSpeed: 2
+  mobility: 6.5
   sustain: 2
   teamHealing: 0
-  scaling: 1
-  turretPush: 8
-  poke: 0
-  stats:
-  - 5.5
-  - 8.1
-  - 5
-  - 4
-  - 8
-  - 1.5
-  - 2.4
-  - 4
-  - 2
-  - 0
-  - 0.9
-  - 8
-  - 0
+  scaling: 1.75
+  turretPush: 6
+  poke: 4.5
+  stats: []

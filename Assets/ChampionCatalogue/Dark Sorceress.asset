@@ -10,35 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f193e405481e7f4bb39d656b69d2f2c, type: 3}
-  m_Name: Ranger
+  m_Name: Dark Sorceress
   m_EditorClassIdentifier: 
-  championIcon: {fileID: 21300000, guid: 7e0dc593c0c3eac448b0460aa455d05a, type: 3}
-  championName: Ranger
-  archetype: 4
-  attack: 8.1
-  defense: 4
-  CC: 0
-  teamfight: 9
-  dueling: 5
-  combatSpeed: 1.45
-  outOfCombatSpeed: 2.1
+  championIcon: {fileID: 21300000, guid: ca95886c7ccd69a41a9bad68a84e0462, type: 3}
+  championName: Dark Sorceress
+  archetype: 2
+  attack: 8.8
+  defense: 3.2
+  CC: 6
+  teamfight: 8.9
+  dueling: 2
+  combatSpeed: 1.24
+  outOfCombatSpeed: 1.9
   mobility: 0
-  sustain: 3
+  sustain: 0
   teamHealing: 0
-  scaling: 1.89
-  turretPush: 6.2
-  poke: 7.1
-  stats:
-  - 8
-  - 4
-  - 0
-  - 9
-  - 5
-  - 1.45
-  - 2.4
-  - 0
-  - 3
-  - 0
-  - 1.89
-  - 6.2
-  - 7.1
+  scaling: 1.7
+  turretPush: 1
+  poke: 6
+  stats: []

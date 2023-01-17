@@ -10,35 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f193e405481e7f4bb39d656b69d2f2c, type: 3}
-  m_Name: Arsonist
+  m_Name: Monk
   m_EditorClassIdentifier: 
-  championIcon: {fileID: 21300000, guid: 4bb3f37960b8f984aba52b37b0d37bf8, type: 3}
-  championName: Arsonist
-  archetype: 2
-  attack: 9.3
-  defense: 3
-  CC: 4
-  teamfight: 8.8
-  dueling: 3.2
-  combatSpeed: 1.2
-  outOfCombatSpeed: 2
-  mobility: 0
-  sustain: 0
-  teamHealing: 0
+  championIcon: {fileID: 21300000, guid: ad7a5448db653ba4fbd649d48e3dbbb8, type: 3}
+  championName: Monk
+  archetype: 3
+  attack: 4.5
+  defense: 6.4
+  CC: 5.2
+  teamfight: 6
+  dueling: 2
+  combatSpeed: 1.6
+  outOfCombatSpeed: 2.2
+  mobility: 7
+  sustain: 8
+  teamHealing: 6.7
   scaling: 1.1
   turretPush: 3
-  poke: 9.5
-  stats:
-  - 9.3
-  - 3
-  - 4
-  - 8.8
-  - 3.2
-  - 1.2
-  - 2.25
-  - 0
-  - 0
-  - 0
-  - 1.1
-  - 3
-  - 9.5
+  poke: 4
+  stats: []

@@ -2770,6 +2770,7 @@ GameObject:
   - component: {fileID: 164537119}
   - component: {fileID: 164537118}
   - component: {fileID: 164537120}
+  - component: {fileID: 164537121}
   m_Layer: 0
   m_Name: StateHolder
   m_TagString: Untagged
@@ -2789,10 +2790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74502bc3a0b9dfd4fa3e182a68505cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
   backing: {fileID: 164537120}
+  pushing: {fileID: 164537121}
 --- !u!4 &164537119
 Transform:
   m_ObjectHideFlags: 0
@@ -2821,6 +2820,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farming: {fileID: 164537118}
+--- !u!114 &164537121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164537117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b0f5dc6a2dfd740a470f9b3c642dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farming: {fileID: 0}
 --- !u!1 &167591879
 GameObject:
   m_ObjectHideFlags: 0
@@ -5446,6 +5458,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: -0.5, y: -0.5}
+  currentHealth: 100
 --- !u!1 &312666355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5823,10 +5836,15 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   agent: {fileID: 322412742}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameManager: {fileID: 0}
   farmingTick: 0
   tradingTick: 0
   myTeam: []
+  nearbyAllies: []
+  nearbyEnemies: []
   performanceMultiplier: 1
   roamScore: 1
   aggressionScore: 1
@@ -5847,6 +5865,7 @@ MonoBehaviour:
   baseTopRedTurret: {fileID: 1894162699}
   baseBotBlueTurret: {fileID: 2141100964}
   baseBotRedTurret: {fileID: 1977165913}
+  isSeen: 1
   characterIcon: {fileID: 16840603}
   myRole: 0
 --- !u!195 &322412742
@@ -6157,10 +6176,15 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   agent: {fileID: 329390924}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameManager: {fileID: 0}
   farmingTick: 0
   tradingTick: 0
   myTeam: []
+  nearbyAllies: []
+  nearbyEnemies: []
   performanceMultiplier: 1
   roamScore: 1
   aggressionScore: 1
@@ -6181,6 +6205,7 @@ MonoBehaviour:
   baseTopRedTurret: {fileID: 1894162699}
   baseBotBlueTurret: {fileID: 2141100964}
   baseBotRedTurret: {fileID: 1977165913}
+  isSeen: 1
   characterIcon: {fileID: 677243040}
   myRole: 3
 --- !u!212 &329390926
@@ -7837,6 +7862,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: -1, y: 0}
+  currentHealth: 100
 --- !u!1 &436162180
 GameObject:
   m_ObjectHideFlags: 0
@@ -8640,6 +8666,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: 1, y: 0}
+  currentHealth: 100
 --- !u!1 &494212867
 GameObject:
   m_ObjectHideFlags: 0
@@ -8754,6 +8781,7 @@ GameObject:
   - component: {fileID: 495286630}
   - component: {fileID: 495286629}
   - component: {fileID: 495286631}
+  - component: {fileID: 495286632}
   m_Layer: 0
   m_Name: StateHolder
   m_TagString: Untagged
@@ -8773,10 +8801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74502bc3a0b9dfd4fa3e182a68505cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
   backing: {fileID: 495286631}
+  pushing: {fileID: 495286632}
 --- !u!4 &495286630
 Transform:
   m_ObjectHideFlags: 0
@@ -8805,6 +8831,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farming: {fileID: 495286629}
+--- !u!114 &495286632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495286628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b0f5dc6a2dfd740a470f9b3c642dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farming: {fileID: 0}
 --- !u!1 &499432157
 GameObject:
   m_ObjectHideFlags: 0
@@ -10913,6 +10952,7 @@ GameObject:
   - component: {fileID: 626658818}
   - component: {fileID: 626658817}
   - component: {fileID: 626658819}
+  - component: {fileID: 626658820}
   m_Layer: 0
   m_Name: StateHolder
   m_TagString: Untagged
@@ -10932,10 +10972,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74502bc3a0b9dfd4fa3e182a68505cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
   backing: {fileID: 626658819}
+  pushing: {fileID: 626658820}
 --- !u!4 &626658818
 Transform:
   m_ObjectHideFlags: 0
@@ -10964,6 +11002,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farming: {fileID: 626658817}
+--- !u!114 &626658820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626658816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b0f5dc6a2dfd740a470f9b3c642dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farming: {fileID: 0}
 --- !u!1 &626906975
 GameObject:
   m_ObjectHideFlags: 0
@@ -11956,6 +12007,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: 0, y: 0}
+  currentHealth: 100
 --- !u!1 &654316941
 GameObject:
   m_ObjectHideFlags: 0
@@ -14745,6 +14797,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: 1, y: 0}
+  currentHealth: 100
 --- !u!1 &820712681
 GameObject:
   m_ObjectHideFlags: 0
@@ -16456,10 +16509,15 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   agent: {fileID: 908962695}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameManager: {fileID: 0}
   farmingTick: 0
   tradingTick: 0
   myTeam: []
+  nearbyAllies: []
+  nearbyEnemies: []
   performanceMultiplier: 1
   roamScore: 1
   aggressionScore: 1
@@ -16480,6 +16538,7 @@ MonoBehaviour:
   baseTopRedTurret: {fileID: 1894162699}
   baseBotBlueTurret: {fileID: 2141100964}
   baseBotRedTurret: {fileID: 1977165913}
+  isSeen: 1
   characterIcon: {fileID: 1395537147}
   myRole: 2
 --- !u!212 &908962697
@@ -17132,10 +17191,15 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   agent: {fileID: 936046563}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameManager: {fileID: 0}
   farmingTick: 0
   tradingTick: 0
   myTeam: []
+  nearbyAllies: []
+  nearbyEnemies: []
   performanceMultiplier: 1
   roamScore: 1
   aggressionScore: 1
@@ -17156,6 +17220,7 @@ MonoBehaviour:
   baseTopRedTurret: {fileID: 1894162699}
   baseBotBlueTurret: {fileID: 2141100964}
   baseBotRedTurret: {fileID: 1977165913}
+  isSeen: 1
   characterIcon: {fileID: 1607043824}
   myRole: 1
 --- !u!212 &936046565
@@ -18270,6 +18335,7 @@ GameObject:
   - component: {fileID: 975469512}
   - component: {fileID: 975469511}
   - component: {fileID: 975469513}
+  - component: {fileID: 975469514}
   m_Layer: 0
   m_Name: StateHolder
   m_TagString: Untagged
@@ -18289,10 +18355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74502bc3a0b9dfd4fa3e182a68505cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
   backing: {fileID: 975469513}
+  pushing: {fileID: 975469514}
 --- !u!4 &975469512
 Transform:
   m_ObjectHideFlags: 0
@@ -18321,6 +18385,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farming: {fileID: 975469511}
+--- !u!114 &975469514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975469510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b0f5dc6a2dfd740a470f9b3c642dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farming: {fileID: 0}
 --- !u!1 &986507329
 GameObject:
   m_ObjectHideFlags: 0
@@ -19965,6 +20042,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: -2, y: 0}
+  currentHealth: 100
 --- !u!1 &1053938275
 GameObject:
   m_ObjectHideFlags: 0
@@ -20417,6 +20495,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: 0, y: 1}
+  currentHealth: 100
 --- !u!1 &1073222368
 GameObject:
   m_ObjectHideFlags: 0
@@ -20502,7 +20581,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.9
+  m_fontSize: 33.8
   m_fontSizeBase: 50.79
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -21058,6 +21137,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: 0, y: 1}
+  currentHealth: 100
 --- !u!1 &1100191405
 GameObject:
   m_ObjectHideFlags: 0
@@ -21901,6 +21981,7 @@ GameObject:
   - component: {fileID: 1129133322}
   - component: {fileID: 1129133321}
   - component: {fileID: 1129133323}
+  - component: {fileID: 1129133324}
   m_Layer: 0
   m_Name: StateHolder
   m_TagString: Untagged
@@ -21920,10 +22001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74502bc3a0b9dfd4fa3e182a68505cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
   backing: {fileID: 1129133323}
+  pushing: {fileID: 1129133324}
 --- !u!4 &1129133322
 Transform:
   m_ObjectHideFlags: 0
@@ -21952,6 +22031,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farming: {fileID: 1129133321}
+--- !u!114 &1129133324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129133320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b0f5dc6a2dfd740a470f9b3c642dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farming: {fileID: 0}
 --- !u!1 &1131246340
 GameObject:
   m_ObjectHideFlags: 0
@@ -22366,6 +22458,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: -1, y: 0}
+  currentHealth: 100
 --- !u!1 &1158940861
 GameObject:
   m_ObjectHideFlags: 0
@@ -25534,10 +25627,15 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   agent: {fileID: 1372684275}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameManager: {fileID: 0}
   farmingTick: 0
   tradingTick: 0
   myTeam: []
+  nearbyAllies: []
+  nearbyEnemies: []
   performanceMultiplier: 1
   roamScore: 1
   aggressionScore: 1
@@ -25558,6 +25656,7 @@ MonoBehaviour:
   baseTopRedTurret: {fileID: 1894162699}
   baseBotBlueTurret: {fileID: 2141100964}
   baseBotRedTurret: {fileID: 1977165913}
+  isSeen: 1
   characterIcon: {fileID: 1585696049}
   myRole: 3
 --- !u!212 &1372684277
@@ -28380,6 +28479,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: 0.5, y: 0.5}
+  currentHealth: 100
 --- !u!1 &1564864845
 GameObject:
   m_ObjectHideFlags: 0
@@ -28615,6 +28715,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: 0, y: -1}
+  currentHealth: 100
 --- !u!1 &1568811123
 GameObject:
   m_ObjectHideFlags: 0
@@ -29098,6 +29199,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: 0, y: -1}
+  currentHealth: 100
 --- !u!1 &1585005410
 GameObject:
   m_ObjectHideFlags: 0
@@ -31639,7 +31741,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.55
+  m_fontSize: 28.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -32256,14 +32358,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   champions:
-  - {fileID: 11400000, guid: 3c8fb343e29527c438ab99f37a7785b1, type: 2}
-  - {fileID: 11400000, guid: 331b5339bcaa2784abf075212589e052, type: 2}
-  - {fileID: 11400000, guid: 2988b722837a91f43977005b1d294e86, type: 2}
-  - {fileID: 11400000, guid: 0cfee7d036d30344582347372d700af4, type: 2}
-  - {fileID: 11400000, guid: 8871808b120691f48975ce43fa3e6190, type: 2}
-  - {fileID: 11400000, guid: 7c7a4157788aa8242b60dde59d8a0ea8, type: 2}
-  - {fileID: 11400000, guid: 690d78de97c58a94f8751889bfc9c95f, type: 2}
   - {fileID: 11400000, guid: ed954bff06c75d4439412c95e5a43573, type: 2}
+  - {fileID: 11400000, guid: 30bdf1daf416dc647bcef3afee227d7b, type: 2}
+  - {fileID: 11400000, guid: 690d78de97c58a94f8751889bfc9c95f, type: 2}
+  - {fileID: 11400000, guid: 7c7a4157788aa8242b60dde59d8a0ea8, type: 2}
+  - {fileID: 11400000, guid: 8871808b120691f48975ce43fa3e6190, type: 2}
+  - {fileID: 11400000, guid: 4122513b6f031044d9af87b2bc9a5acf, type: 2}
+  - {fileID: 11400000, guid: 4c7ecc25a1c617945930a3fc08dfaf60, type: 2}
+  - {fileID: 11400000, guid: 0a6e2c72a2947b94096d80ef49f2e97a, type: 2}
+  - {fileID: 11400000, guid: 0cfee7d036d30344582347372d700af4, type: 2}
+  - {fileID: 11400000, guid: b032ec56cd2a039479f8e6d3fb11b53e, type: 2}
+  - {fileID: 11400000, guid: 20233b3c9ce601c4d95c8313390c5599, type: 2}
+  - {fileID: 11400000, guid: 2988b722837a91f43977005b1d294e86, type: 2}
+  - {fileID: 11400000, guid: 331b5339bcaa2784abf075212589e052, type: 2}
+  - {fileID: 11400000, guid: 42f9cf8a023d164449d9d202d0a21e88, type: 2}
+  - {fileID: 11400000, guid: 3c8fb343e29527c438ab99f37a7785b1, type: 2}
+  - {fileID: 11400000, guid: c4643d94e5b9a1141b5e50f402131e5b, type: 2}
   uiManager: {fileID: 298173790}
   gameCanvas: {fileID: 625764070}
   playerDisplay: {fileID: 5411462402441915426, guid: 24eba7a8a78f5a5408274418a5f7e883, type: 3}
@@ -33707,6 +33817,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: 0.5, y: 0.5}
+  currentHealth: 100
 --- !u!1 &1753889849
 GameObject:
   m_ObjectHideFlags: 0
@@ -34097,6 +34208,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: 0.5, y: 0.5}
+  currentHealth: 100
 --- !u!1 &1775903252
 GameObject:
   m_ObjectHideFlags: 0
@@ -35340,10 +35452,15 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   agent: {fileID: 1791172476}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameManager: {fileID: 0}
   farmingTick: 0
   tradingTick: 0
   myTeam: []
+  nearbyAllies: []
+  nearbyEnemies: []
   performanceMultiplier: 1
   roamScore: 1
   aggressionScore: 1
@@ -35364,6 +35481,7 @@ MonoBehaviour:
   baseTopRedTurret: {fileID: 1894162699}
   baseBotBlueTurret: {fileID: 2141100964}
   baseBotRedTurret: {fileID: 1977165913}
+  isSeen: 1
   characterIcon: {fileID: 1710391587}
   myRole: 2
 --- !u!212 &1791172478
@@ -36018,6 +36136,7 @@ GameObject:
   - component: {fileID: 1841181530}
   - component: {fileID: 1841181529}
   - component: {fileID: 1841181531}
+  - component: {fileID: 1841181532}
   m_Layer: 0
   m_Name: StateHolder
   m_TagString: Untagged
@@ -36037,10 +36156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74502bc3a0b9dfd4fa3e182a68505cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
   backing: {fileID: 1841181531}
+  pushing: {fileID: 1841181532}
 --- !u!4 &1841181530
 Transform:
   m_ObjectHideFlags: 0
@@ -36069,6 +36186,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farming: {fileID: 1841181529}
+--- !u!114 &1841181532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841181528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b0f5dc6a2dfd740a470f9b3c642dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farming: {fileID: 0}
 --- !u!1 &1842954522
 GameObject:
   m_ObjectHideFlags: 0
@@ -37047,10 +37177,15 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   agent: {fileID: 1875871101}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameManager: {fileID: 0}
   farmingTick: 0
   tradingTick: 0
   myTeam: []
+  nearbyAllies: []
+  nearbyEnemies: []
   performanceMultiplier: 1
   roamScore: 1
   aggressionScore: 1
@@ -37071,6 +37206,7 @@ MonoBehaviour:
   baseTopRedTurret: {fileID: 1894162699}
   baseBotBlueTurret: {fileID: 2141100964}
   baseBotRedTurret: {fileID: 1977165913}
+  isSeen: 1
   characterIcon: {fileID: 1794402467}
   myRole: 0
 --- !u!212 &1875871103
@@ -37555,6 +37691,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: 0, y: 2}
+  currentHealth: 100
 --- !u!1 &1900383341
 GameObject:
   m_ObjectHideFlags: 0
@@ -38833,6 +38970,7 @@ GameObject:
   - component: {fileID: 1937198890}
   - component: {fileID: 1937198889}
   - component: {fileID: 1937198891}
+  - component: {fileID: 1937198892}
   m_Layer: 0
   m_Name: StateHolder
   m_TagString: Untagged
@@ -38852,10 +38990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74502bc3a0b9dfd4fa3e182a68505cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
   backing: {fileID: 1937198891}
+  pushing: {fileID: 1937198892}
 --- !u!4 &1937198890
 Transform:
   m_ObjectHideFlags: 0
@@ -38884,6 +39020,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farming: {fileID: 1937198889}
+--- !u!114 &1937198892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937198888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b0f5dc6a2dfd740a470f9b3c642dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farming: {fileID: 0}
 --- !u!1 &1977165910
 GameObject:
   m_ObjectHideFlags: 0
@@ -38984,6 +39133,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: 2, y: 0}
+  currentHealth: 100
 --- !u!114 &1979335284 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4470617236771336854, guid: 24eba7a8a78f5a5408274418a5f7e883, type: 3}
@@ -40327,6 +40477,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 0
   forwardsVector: {x: 0, y: 0}
+  currentHealth: 100
 --- !u!1 &2067383421
 GameObject:
   m_ObjectHideFlags: 0
@@ -41228,10 +41379,15 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   agent: {fileID: 2089916548}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameManager: {fileID: 0}
   farmingTick: 0
   tradingTick: 0
   myTeam: []
+  nearbyAllies: []
+  nearbyEnemies: []
   performanceMultiplier: 1
   roamScore: 1
   aggressionScore: 1
@@ -41252,6 +41408,7 @@ MonoBehaviour:
   baseTopRedTurret: {fileID: 1894162699}
   baseBotBlueTurret: {fileID: 2141100964}
   baseBotRedTurret: {fileID: 1977165913}
+  isSeen: 1
   characterIcon: {fileID: 649162406}
   myRole: 1
 --- !u!212 &2089916550
@@ -42201,6 +42358,7 @@ MonoBehaviour:
   isAlive: 1
   onBlue: 1
   forwardsVector: {x: 0, y: -2}
+  currentHealth: 100
 --- !u!1 &2146085990
 GameObject:
   m_ObjectHideFlags: 0
@@ -42212,6 +42370,7 @@ GameObject:
   - component: {fileID: 2146085992}
   - component: {fileID: 2146085991}
   - component: {fileID: 2146085993}
+  - component: {fileID: 2146085994}
   m_Layer: 0
   m_Name: StateHolder
   m_TagString: Untagged
@@ -42231,10 +42390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74502bc3a0b9dfd4fa3e182a68505cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
   backing: {fileID: 2146085993}
+  pushing: {fileID: 2146085994}
 --- !u!4 &2146085992
 Transform:
   m_ObjectHideFlags: 0
@@ -42263,6 +42420,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farming: {fileID: 2146085991}
+--- !u!114 &2146085994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146085990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b0f5dc6a2dfd740a470f9b3c642dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farming: {fileID: 0}
 --- !u!1 &2146336655
 GameObject:
   m_ObjectHideFlags: 0

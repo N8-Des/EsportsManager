@@ -20,11 +20,24 @@ MonoBehaviour:
   teamfight: 5.5
   dueling: 6.4
   combatSpeed: 1.6
-  outOfCombatSpeed: 2.5
+  outOfCombatSpeed: 2.2
   mobility: 7
   sustain: 2
   teamHealing: 0
-  scaling: 0.7
+  scaling: 1
   turretPush: 6
   poke: 4
-  stats: []
+  stats:
+  - 7.4
+  - 5.2
+  - 3
+  - 5.5
+  - 6.4
+  - 1.6
+  - 2.5
+  - 7
+  - 2
+  - 0
+  - 0.7
+  - 6
+  - 4

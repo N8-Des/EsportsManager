@@ -14,17 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   championIcon: {fileID: 21300000, guid: 976f75cb554e97944932f2ae89a6b406, type: 3}
   championName: Gunslinger
+  archetype: 4
   attack: 10
   defense: 2
   CC: 0
   teamfight: 8.5
   dueling: 2.4
   combatSpeed: 1.23
-  outOfCombatSpeed: 2.4
+  outOfCombatSpeed: 2
   mobility: 3
   sustain: 0
   teamHealing: 0
   scaling: 1.45
   turretPush: 4
   poke: 6.4
-  stats: []
+  stats:
+  - 10
+  - 2
+  - 0
+  - 8.5
+  - 2.4
+  - 1.23
+  - 2.4
+  - 3
+  - 0
+  - 0
+  - 1.45
+  - 4
+  - 6.4

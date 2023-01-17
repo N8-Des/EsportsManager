@@ -10,35 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f193e405481e7f4bb39d656b69d2f2c, type: 3}
-  m_Name: DualMage
+  m_Name: Valkyrie
   m_EditorClassIdentifier: 
-  championIcon: {fileID: 21300000, guid: 55335a72ed5e6404c879c19b8c61ec39, type: 3}
-  championName: Dual Mage
-  archetype: 2
-  attack: 8.5
-  defense: 4.6
-  CC: 8
-  teamfight: 7
-  dueling: 5.6
-  combatSpeed: 1.3
+  championIcon: {fileID: 21300000, guid: 46d26dca8d4836646ad42e73af9aa739, type: 3}
+  championName: Valkyrie
+  archetype: 3
+  attack: 4
+  defense: 9.2
+  CC: 9.8
+  teamfight: 8
+  dueling: 2
+  combatSpeed: 1.1
   outOfCombatSpeed: 1.9
-  mobility: 0
-  sustain: 0
-  teamHealing: 0
-  scaling: 1.3
+  mobility: 3.5
+  sustain: 4
+  teamHealing: 3
+  scaling: 1.1
   turretPush: 3
-  poke: 8
-  stats:
-  - 8.5
-  - 4.6
-  - 8
-  - 7
-  - 5.6
-  - 1.3
-  - 2.25
-  - 0
-  - 0
-  - 0
-  - 1.3
-  - 3
-  - 8
+  poke: 1
+  stats: []

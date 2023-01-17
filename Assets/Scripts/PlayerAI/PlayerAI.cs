@@ -14,6 +14,8 @@ public class PlayerAI : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
     public NavMeshAgent agent;
+    public LayerMask playerMask;
+
     public GameManager gameManager;
     [HideInInspector]
     public float farmingTick;
@@ -21,6 +23,10 @@ public class PlayerAI : MonoBehaviour
     public float tradingTick;
     public List<PlayerAI> myTeam = new List<PlayerAI>();
     List<Turret> friendlyTurrets = new List<Turret>();
+    List<Turret> enemyTurrets = new List<Turret>();
+    public List<PlayerAI> nearbyAllies;
+    public List<PlayerAI> nearbyEnemies;
+
     [Header("Decision Values")]
     //these values differ from individual player stats, as they can be affected based on strategy and game state.
     public float performanceMultiplier = 1;
@@ -46,6 +52,7 @@ public class PlayerAI : MonoBehaviour
     public Turret baseTopRedTurret;
     public Turret baseBotBlueTurret;
     public Turret baseBotRedTurret;
+    public bool isSeen;
     Vector3 mySpawn;
     public SpriteRenderer characterIcon;
     public enum role
@@ -66,6 +73,14 @@ public class PlayerAI : MonoBehaviour
     {
         currentHealth -= damage;
     }
+
+    public void MakeDecision()
+    {
+        //determine the best course of action I guess?
+        //what the fuck this is so much
+
+    }
+
     public void Activate(GameManager gm)
     {
         gameManager = gm;
@@ -84,6 +99,14 @@ public class PlayerAI : MonoBehaviour
             friendlyTurrets.Add(botBlueTurretT2);
             friendlyTurrets.Add(baseBotBlueTurret);
             friendlyTurrets.Add(baseTopBlueTurret);
+            enemyTurrets.Add(topRedTurretT1);
+            enemyTurrets.Add(topRedTurretT2);
+            enemyTurrets.Add(midRedTurretT1);
+            enemyTurrets.Add(midRedTurretT2);
+            enemyTurrets.Add(botRedTurretT1);
+            enemyTurrets.Add(botRedTurretT2);
+            enemyTurrets.Add(baseBotRedTurret);
+            enemyTurrets.Add(baseTopRedTurret);
         }
         else
         {
@@ -96,6 +119,14 @@ public class PlayerAI : MonoBehaviour
             friendlyTurrets.Add(botRedTurretT2);
             friendlyTurrets.Add(baseBotRedTurret);
             friendlyTurrets.Add(baseTopRedTurret);
+            enemyTurrets.Add(topBlueTurretT1);
+            enemyTurrets.Add(topBlueTurretT2);
+            enemyTurrets.Add(midBlueTurretT1);
+            enemyTurrets.Add(midBlueTurretT2);
+            enemyTurrets.Add(botBlueTurretT1);
+            enemyTurrets.Add(botBlueTurretT2);
+            enemyTurrets.Add(baseBotBlueTurret);
+            enemyTurrets.Add(baseTopBlueTurret);
         }
 
         //consistency check. This part is gonna be even worse to look at LOL
@@ -159,7 +190,21 @@ public class PlayerAI : MonoBehaviour
         }
         return turret;
     }
-
+    public Turret GetClosestEnemyTurret()
+    {
+        float distance = Mathf.Infinity;
+        Turret turret = friendlyTurrets[1];
+        foreach (Turret t in enemyTurrets)
+        {
+            float currDistance = Vector3.Distance(transform.position, t.transform.position);
+            if (currDistance < distance)
+            {
+                distance = currDistance;
+                turret = t;
+            }
+        }
+        return turret;
+    }
     public void Die()
     {
         transform.position = mySpawn;
@@ -181,8 +226,10 @@ public class PlayerAI : MonoBehaviour
         foreach (PlayerAI player in team)
         {
             combatPower += (int)((player.championStats.attack + player.championStats.defense + player.championStats.CC) * 3.5f);
-            combatPower += player.currentHealth * 3;
-            //add simple counter here to add based on champion mastery
+            combatPower += (Mathf.Pow(((float)player.currentHealth / (float)player.maxHealth), 1.4f) * 100);
+            //TODO: add simple counter here to add based on champion mastery
+
+
 
             //now, take the arguably most important trait, decision making. This allows players to guess what the skill level of opponents is. 
             //since health and powerlevel are so obvious, this is important. 

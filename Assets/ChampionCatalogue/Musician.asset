@@ -14,17 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   championIcon: {fileID: 21300000, guid: 005b3ade18977c54db1d21551fb389d8, type: 3}
   championName: Musician
+  archetype: 3
   attack: 6
   defense: 4.5
   CC: 8.5
   teamfight: 7.4
   dueling: 4.5
   combatSpeed: 1.25
-  outOfCombatSpeed: 2.3
+  outOfCombatSpeed: 2
   mobility: 0
   sustain: 4
   teamHealing: 8
   scaling: 1.2
   turretPush: 1
   poke: 4.5
-  stats: []
+  stats:
+  - 6
+  - 4.5
+  - 8.5
+  - 7.4
+  - 4.5
+  - 1.25
+  - 2.3
+  - 0
+  - 4
+  - 8
+  - 1.2
+  - 1
+  - 4.5

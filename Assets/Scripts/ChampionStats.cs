@@ -6,9 +6,18 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Champion Data")]
 public class ChampionStats : ScriptableObject
 {
+    public enum ChampionType 
+    {
+        WARRIOR, 
+        ASSASSIN,
+        MAGE,
+        SUPPORT,
+        MARKSMAN
+    }
 
     public Sprite championIcon;
     public string championName;
+    public ChampionType archetype;
     [Header("Stats")]
     public float attack;
     public float defense;

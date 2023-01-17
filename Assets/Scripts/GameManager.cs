@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public PlayerAI redSupport;
     public bool resolvingCombat;
     Vector3 cameraPosition = new Vector3(0, 0, -10);
-    
+    bool gameInProgress;
 
     private void Start()
     {
@@ -49,7 +49,20 @@ public class GameManager : MonoBehaviour
         //TESTING: REMEMBER TO REMOVE!
         blueTop.myStats = players[0];
     }
-
+    private void Update()
+    {
+        if (gameInProgress && !resolvingCombat)
+        {
+            if(Input.GetKey(KeyCode.Space))
+            {
+                Time.timeScale = 10;
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Time.timeScale = 1;
+            }
+        }
+    }
     public void StartGame()
     {
         if (blue.Count == 4 && red.Count == 4)
@@ -102,6 +115,7 @@ public class GameManager : MonoBehaviour
         {
             p.Activate(this);
         }
+        gameInProgress = true;
     }
     public void SaveGame()
     {
@@ -263,7 +277,7 @@ public class GameManager : MonoBehaviour
         //NOTE: eventually, each champion will need to have matchup-reliant stats, that modify the combat scores. 
         float combatScore = 0;
         combatScore += (player.championStats.attack + player.championStats.defense + player.championStats.CC);
-        combatScore += (((float)player.currentHealth / (float)player.maxHealth) * 80f);
+        combatScore += (Mathf.Pow(((float)player.currentHealth / (float)player.maxHealth), 1.4f) * 100f);
         if(isDuel)
         {
             combatScore += (player.championStats.dueling * 10f);

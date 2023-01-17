@@ -7,9 +7,9 @@ public class Farming : State
     bool isFarming;
     bool isBacking;
     bool tryingToBack;
-    public LayerMask playerMask;
     Turret currentTurret;
     public State backing;
+    public State pushing;
     public override State stateTick(PlayerAI player)
     {
         if (isFarming)
@@ -27,19 +27,28 @@ public class Farming : State
             //there are not lane states in this game. 
 
             //anyways, here comes backing. 
-            if ((float)player.currentHealth / (float)player.maxHealth < 0.5f + Mathf.Lerp(0.07f, -0.07f, player.myStats.aggression / 100))
+
+            float goldScore = 0;
+            goldScore = player.currentGold;
+            int extraDecision = Random.Range(0, 20);
+            if (extraDecision < 20)
+            {
+                goldScore = 0;
+            }
+            if ((float)player.currentHealth / (float)player.maxHealth < 0.5f + Mathf.Lerp(0.15f, -0.07f, player.myStats.aggression / 100) || goldScore > 2500)
             {
                 player.agent.enabled = true;
                 player.agent.SetDestination(player.GetClosestTurret().transform.position - (Vector3)player.GetClosestTurret().forwardsVector);
                 return backing;
             }
-            Collider2D[] nearbyPlayers = Physics2D.OverlapCircleAll(transform.position, 1.45f, playerMask);
+
+            Collider2D[] nearbyPlayers = Physics2D.OverlapCircleAll(transform.position, 1.45f, player.playerMask);
             if (nearbyPlayers.Length == 2)
             {
                 foreach (Collider2D c in nearbyPlayers)
                 {
                     PlayerAI otherPlayer = c.GetComponent<PlayerAI>();
-                    if (!player.myTeam.Contains(otherPlayer))
+                    if (!player.myTeam.Contains(otherPlayer) && player.isSeen)
                     {
                         //trade.
                         player.tradingTick += Time.deltaTime;
@@ -55,12 +64,13 @@ public class Farming : State
             }
 
 
+
             //determine if a fight is to break out. yikers.
             List<PlayerAI> playersMyTeam = new List<PlayerAI>();
             List<PlayerAI> playersEnemyTeam = new List<PlayerAI>();
             //this goes off every frame. Hope its not gonna lag everything lol
 
-
+            nearbyPlayers = Physics2D.OverlapCircleAll(transform.position, 3.5f, player.playerMask);
             //currently thinking an alternative is to have vision determine how frequently a player checks to see if they go in? 
             foreach (Collider2D c in nearbyPlayers)
             {
@@ -78,11 +88,19 @@ public class Farming : State
 
                 float allyCombatScore = player.GuessCombatPower(playersMyTeam);
                 float enemyCombatScore = player.GuessCombatPower(playersEnemyTeam);
-                float agressionModifier = Mathf.Lerp(25, 10, player.myStats.aggression / 100);
+                float agressionModifier = Mathf.Lerp(60, 25, player.myStats.aggression / 100);
                 if (allyCombatScore - enemyCombatScore >= agressionModifier && !player.gameManager.resolvingCombat)
                 {
                     player.gameManager.ResolveCombat1v1(player, playersEnemyTeam[0]);
                 }
+            }
+            //the IsSupport flag will eventually be gone. 
+            if (playersEnemyTeam.Count == 0 && player.myRole != PlayerAI.role.SUPPORT)
+            {
+                //choose between pushing and roaming?
+                //To determine this, players will look at the state of the map. 
+                //Pushing first. 
+                return pushing;
             }
         }
         else
